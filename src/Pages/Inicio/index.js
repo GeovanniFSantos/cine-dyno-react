@@ -1,10 +1,20 @@
-import videos from 'json/db.json';
 import styles from './Inicio.module.css';
 import Banner from "Components/Banner";
 import Titulo from 'Components/Titulo';
 import Card from 'Components/Card';
+import { useEffect, useState } from 'react';
 
 function Inicio() {
+    const [videos, setVideos] = useState([]);
+
+    useEffect(() => {
+        fetch("https://my-json-server.typicode.com/geovannifsantos/cinedynoo-api/videos")
+            .then(resposta => resposta.json())
+            .then(dados => {
+                setVideos(dados)
+            })
+    }, [])
+
     return (
         <>
             <Banner imagem="home" />
